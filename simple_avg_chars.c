@@ -70,7 +70,7 @@ int main()
    }
 
    ttotal = myclock() - tstart;
-   printf("TIME, %d", ttotal);
+   printf("TIME, %lf", ttotal);
 
    fclose( fd );
 
