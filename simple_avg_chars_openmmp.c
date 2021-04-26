@@ -7,19 +7,20 @@ float find_avg(char* line, int nchars) {
    int i, j;
    float sum = 0;
 
-   #pragma omp parallel private(sum)
+   #pragma omp parallel
    {
 
       #pragma omp for
          for ( i = 0; i < nchars; i++ ) {
             sum += ((int) line[i]);
          }
-
-      if (nchars > 0) 
-      return sum / (float) nchars;
-      else
-      return 0.0;
    }
+   
+   if (nchars > 0) 
+   return sum / (float) nchars;
+   else
+   return 0.0;
+   
 }
 
 int main()
