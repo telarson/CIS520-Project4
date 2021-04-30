@@ -25,7 +25,7 @@ float find_avg(char* line, int nchars) {
 
 int main()
 {
-   int nlines = 0, maxlines = 1000;
+   int nlines = 0, maxlines = 1000000;
    int i, err;
    float  charsum=0.0; 
    int nchars = 0; 
