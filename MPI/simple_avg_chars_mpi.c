@@ -6,7 +6,7 @@
 
 int NUM_THREADS;
 
-#define ARRAY_SIZE 1000 //Numeber of lines
+#define ARRAY_SIZE 1000000 //Numeber of lines
 #define STRING_SIZE 2001 //size of lines
 
 char line_array[ARRAY_SIZE][STRING_SIZE];
@@ -41,11 +41,9 @@ void init_arrays()
 int find_avg(char* line, int nchars) {
    int i, j;
    int sum = 0;
-	//printf("avg1\n");
    for ( i = 0; i < nchars; i++ ) {
       sum += ((int) line[i]);
    }
-   	//printf("avg2\n");
    if (nchars > 0)
         return sum / /*(float)*/ nchars;
    else
@@ -58,7 +56,6 @@ void *count_array(void *rank)
 	int i, j, charLoc;
 	int startPos, endPos;
 	int myID = *((int*)rank);
-	//printf("ARRAY_SIZE = %d and %d and %d", ARRAY_SIZE, NUM_THREADS, myID);
 	startPos = ((long) myID) * (ARRAY_SIZE / NUM_THREADS);
 	endPos = startPos + (ARRAY_SIZE / NUM_THREADS);
 
@@ -73,11 +70,6 @@ void *count_array(void *rank)
 		local_line_avg[i]=find_avg(line_array[i], strlen(line_array[i]));
 	}
 
-					// sum up the partial counts into the global arrays
-	//for ( i = 0; i < ARRAY_SIZE; i++ ) {
- 	//	line_avg[i] += local_line_avg[i];
-	//}
-	//printf("count_array = done!\n");
 }
 
 void print_results(int the_line_avg[])
@@ -86,7 +78,7 @@ void print_results(int the_line_avg[])
 
   					// then print out the totals
   for ( i = 0; i < ARRAY_SIZE; i++ ) {
-	printf("%d: %d\n", i, the_line_avg[i]);
+	printf("LINE, %d: %d\n", i, the_line_avg[i]);
   }
   fflush(stdout);
 }
