@@ -4,9 +4,9 @@
 #include <string.h>
 #include <time.h>
 
-#define NUM_THREADS 4
+#define NUM_THREADS 8
 
-#define ARRAY_SIZE 1000 //Numeber of lines
+#define ARRAY_SIZE 10000 //Numeber of lines
 #define STRING_SIZE 2001 //size of lines
 
 pthread_mutex_t mutexsum; 			//mutex for line_avg
@@ -129,7 +129,7 @@ main() {
 	print_results(line_avg);
 
 	ttotal = myclock() - tstart;
-	printf("TIME, %lf\n", ttotal);
+	printf("DATA, %s, %lf\n", getenv("SLURM_CPUS_ON_NODE"), ttotal);
 
 	pthread_mutex_destroy(&mutexsum);
 	printf("Main: program completed. Exiting.\n");
