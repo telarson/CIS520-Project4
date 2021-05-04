@@ -6,7 +6,7 @@
 
 #define NUM_THREADS 8
 
-#define ARRAY_SIZE 10000 //Numeber of lines
+#define ARRAY_SIZE 1000 //Numeber of lines
 #define STRING_SIZE 2001 //size of lines
 
 pthread_mutex_t mutexsum; 			//mutex for line_avg
@@ -62,8 +62,6 @@ void *count_array(void *myID)
 	int startPos, endPos;
 	startPos = ((int) myID) * (ARRAY_SIZE / NUM_THREADS);
 	endPos = startPos + (ARRAY_SIZE / NUM_THREADS);
-
-	printf("myID = %d startPos = %d endPos = %d \n", (int)myID, startPos, endPos);
 
 					// init local count array
 	for ( i = 0; i < ARRAY_SIZE; i++ ) {
@@ -126,7 +124,7 @@ main() {
 		}
 	}
 
-	print_results(line_avg);
+	//print_results(line_avg);
 
 	ttotal = myclock() - tstart;
 	printf("DATA, %s, %lf\n", getenv("SLURM_CPUS_ON_NODE"), ttotal);
